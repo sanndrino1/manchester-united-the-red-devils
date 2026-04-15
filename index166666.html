@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Arial Black', sans-serif;
+        }
+
+        /* Фонова светлина (Red-Yellow Burst) */
+        .light-burst {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,200,0,0.6) 0%, rgba(255,0,0,0.4) 50%, rgba(0,0,0,1) 80%);
+            animation: burst-glow 2s ease-out forwards;
+            z-index: 0;
+        }
+
+        .scene {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        /* ЕМБЛЕМА: Завъртане при "влизане" */
+        .logo {
+            width: 220px;
+            animation: 
+                intro-rotate 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                pulse 2s infinite 1.5s;
+            filter: drop-shadow(0 0 20px #ff0000);
+        }
+
+        /* ТЕКСТ: Прибиране и изскачане */
+        .text-container {
+            margin-top: 20px;
+            perspective: 1000px;
+        }
+
+        .main-title {
+            color: #fff;
+            font-size: 2.2rem;
+            display: block;
+            text-shadow: 0 0 15px #ff0000;
+            animation: letter-pop 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+        }
+
+        .sub-title {
+            color: #ffcc00; /* Жълт акцент за Red Deval */
+            font-size: 1.5rem;
+            display: block;
+            margin-top: 5px;
+            animation: letter-pop 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+        }
+
+        /* --- АНИМАЦИИ --- */
+
+        /* Експлозия на светлина */
+        @keyframes burst-glow {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.5); opacity: 1; }
+            100% { transform: scale(1.2); opacity: 0.3; }
+        }
+
+        /* Влизане с въртене */
+        @keyframes intro-rotate {
+            0% { transform: scale(0) rotate(-720deg); opacity: 0; }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+
+        /* Пулсиране (след влизането) */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); filter: drop-shadow(0 0 40px #ffcc00); }
+        }
+
+        /* Изскачане на буквите */
+        @keyframes letter-pop {
+            0% { transform: translateY(100px) scale(0); opacity: 0; }
+            60% { transform: translateY(-20px) scale(1.2); opacity: 1; }
+            100% { transform: translateY(0) scale(1); opacity: 1; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="light-burst"></div>
+
+    <div class="scene">
+        <img src="https://upload.wikimedia.org/wikipedia/en/7/7a/Manchester_United_FC_crest.svg" class="logo">
+        
+        <div class="text-container">
+            <span class="main-title">MANCHESTER UNITED</span>
+            <span class="sub-title">Red Deval</span>
+        </div>
+    </div>
+
+</body>
+</html>
